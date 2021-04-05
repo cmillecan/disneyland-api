@@ -87,10 +87,29 @@ getLands = async (req, res) => {
   }).catch(err => console.log(err))
 }
 
+getAttractions = async (req, res) => {
+  await Attraction.find({}, (err, attractions) => {
+    if (err) {
+      return res
+          .status(400)
+          .json( { success: false, error: err } )
+    }
+
+    if (!attractions.length) {
+      return res
+          .status(404)
+          .json({ success: true, data: attractions })
+    }
+    return res.status(200)
+        .json( { success: true, data: attractions })
+  }).catch(err => console.log(err))
+}
+
 module.exports = {
   createLand,
   deleteLand,
   getLandById,
   getLands,
+  getAttractions,
 }
 
