@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Land = new Schema(
   {
     name: { type: String, required: true },
-    date: { type: String, required: false }
+    date: { type: Date, required: false }
   }
 )
 
