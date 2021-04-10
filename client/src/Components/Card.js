@@ -38,6 +38,8 @@ function LandDisplay({name, date}) {
     return (
         <div className='land-info'>
             <h2>{name}</h2>
+
+            
             {/*TODO: format date better using https://date-fns.org/*/}
             Opening Date: {date.toString()}
             <div className='attraction-list'>
