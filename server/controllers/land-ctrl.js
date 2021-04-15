@@ -1,6 +1,6 @@
 const Land = require('../models/land-model')
 
-createLand = (req, res) => {
+const createLand = (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -33,7 +33,7 @@ createLand = (req, res) => {
         })
 }
 
-updateLand = async (req, res) => {
+const updateLand = async (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -70,7 +70,7 @@ updateLand = async (req, res) => {
     })
 }
 
-deleteLand = async (req, res) => {
+const deleteLand = async (req, res) => {
     await Land.findOneAndDelete({ _id: req.params.id}, (err, land) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -86,7 +86,7 @@ deleteLand = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getLandById = async (req, res) => {
+const getLandById = async (req, res) => {
     await Land.findOne({ _id: req.params.id }, (err, land) => {
         if (err) {
             return res
@@ -105,7 +105,7 @@ getLandById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getLands = async (req, res) => {
+const getLands = async (req, res) => {
     await Land.find({}, (err, lands) => {
         if (err) {
             return res
@@ -124,11 +124,29 @@ getLands = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+const searchLands = async (req, res) => {
+    const query = req.query.q
+
+    await Land.find({ name: new RegExp(escapeRegex(query), 'i') }, (err, lands) => {
+        if (err) {
+            return res.status(500).json({success: false, error: err})
+        }
+
+        return res.status(200).json({success: true, data: lands})
+    }).exec()
+
+}
+
+const escapeRegex = (str) => {
+    return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 module.exports = {
     createLand,
     updateLand,
     deleteLand,
     getLandById,
     getLands,
+    searchLands,
 }
 

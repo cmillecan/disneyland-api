@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const Land = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, index: true },
     date: { type: Date, required: false }
   }
 )
