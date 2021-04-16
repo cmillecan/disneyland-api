@@ -6,6 +6,10 @@ html, body, #root {
     font-size: 12px;
 }
 
+button, a:hover {
+    cursor: pointer;
+}
+
 #root {}
 
 .layout {
@@ -16,7 +20,23 @@ html, body, #root {
     align-items: center;
 }
 
-h2 {
+h1 {
+    font-family: 'Karla', sans-serif;
     color: lightskyblue;
     font-size: 18px;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: gold;
+    font-size: 14px;
+}
+
+h3 {
+    color: white;
+    font-size: 12px;
+}
+
+p {
+    color: dimgray;
 }

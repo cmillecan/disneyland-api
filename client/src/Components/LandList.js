@@ -3,24 +3,42 @@ import './LandList.css'
 import Client from '../client'
 import LandDisplay from "./LandDisplay";
 
+const useDebounce = (value, delay) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+            const timeout = setTimeout(() => {
+                setDebouncedValue(value)
+            }, delay)
+
+            return () => {
+                clearTimeout(timeout)
+            }
+        },
+        [value]
+    )
+
+    return debouncedValue
+}
+
 function LandList() {
     const [lands, setLands] = useState([])
     const [query, setQuery] = useState("")
+    const client = new Client()
     useEffect(() => {
-        const client = new Client()
         client.getLands().then(lands => {
             console.log("lands is: ", lands)
             setLands(lands)
         })
     }, [])
 
+    const debouncedQuery = useDebounce(query, 500)
     useEffect(() => {
-        const client = new Client()
-        client.search(query).then(results => setLands(results))
-    }, [query])
+        client.search(debouncedQuery).then(results => setLands(results))
+    }, [debouncedQuery])
 
     const landDisplays = lands.map(({name, date}) => <LandDisplay name={name} date={date} />)
-    console.log('landDisplays is: ', landDisplays)
+
     return(
         <div className='display-container'>
             <div className='search-container'>
@@ -28,12 +46,17 @@ function LandList() {
                 <div className='search-bar'>
                     <input
                         type='text'
+                        placeholder='i.e. Adventureland, Fantasyland, Tomorrowland'
                         onChange={(event) => setQuery(event.target.value)}
                     />
                     <button>Go!</button>
                 </div>
             </div>
-            {landDisplays && landDisplays}
+            <div className='lands-display-container'>
+                <div className='lands-info-display'>
+                {landDisplays && landDisplays}
+            </div>
+            </div>
         </div>
     );
 }

@@ -3,17 +3,18 @@
     flex-direction: column;
     justify-content: center;
     background-color: #282727;
-    position:absolute;
-    left:0;
-    bottom:0;
-    right:0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .about {
-    width: 100%;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: lightskyblue;
     font-size: 12px;
+    font-family: 'Dancing Script', cursive;
 }

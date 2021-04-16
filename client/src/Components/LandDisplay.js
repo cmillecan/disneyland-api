@@ -4,14 +4,11 @@ import './LandDisplay.css'
 function LandDisplay({name, date}) {
     return (
         <div className='land-info'>
-            <h2>{name}</h2>
+            <h1>{name}</h1>
             {/*TODO: format date better using https://date-fns.org/*/}
-            Opening Date: {date.toString()}
+            <p>Opening Date: {date.toString()}</p>
             <div className='attraction-list'>
-                <h3>Attractions: COMING SOON</h3>
-                <p>Jungle Cruise</p>
-                <p>The Enchanted Tiki Room</p>
-                <p>Indiana Jones Adventure</p>
+                <h2>Attractions: COMING SOON</h2>
             </div>
         </div>
     )
