@@ -8,23 +8,27 @@ export default class Client {
     }
 
     createLand(newLand) {
-        this.api.post(`/api/lands`, newLand)
+        this.api.post(`/lands`, newLand)
     }
     async getLands() {
-        const resp = await this.api.get(`/api/lands`)
+        const resp = await this.api.get(`/lands`)
         if (!resp.data.success) return []
         return resp.data.data
     }
     updateLand(id, newLand) {
-        this.api.put(`/api/lands/${id}`, newLand)
+        this.api.put(`/lands/${id}`, newLand)
     }
     deleteLand(id) {
-        this.api.delete(`/api/lands/${id}`)
+        this.api.delete(`/lands/${id}`)
     }
-    getLandById(id){
-        this.api.get(`/api/lands/${id}`)
+    async getLandById(id) {
+        const resp = await this.api.get(`/lands/${id}`)
+        if (!resp.data.success) return []
+        return resp.data.data
     }
-    search(query) {
-        this.api.get(`/api/search?q=${query}`)
+    async search(query) {
+        const resp = await this.api.get(`/search?q=${query}`)
+        if (!resp.data.success) return []
+        return resp.data.data
     }
 }

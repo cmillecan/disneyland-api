@@ -1,10 +1,16 @@
 import React from 'react'
 import './App.css';
-import DisplayCard from "./Components/LandList";
+import HeroImage from "./Components/HeroImage";
+import LandList from "./Components/LandList.js";
+import Footer from "./Components/Footer";
 
 function App() {
     return (
-        <DisplayCard />
+        <div className='layout'>
+            <HeroImage />
+            <LandList />
+            <Footer />
+        </div>
     );
 }
 

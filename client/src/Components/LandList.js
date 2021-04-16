@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 import './LandList.css'
 import Client from '../client'
+import LandDisplay from "./LandDisplay";
 
 function LandList() {
     const [lands, setLands] = useState([])
+    const [query, setQuery] = useState("")
     useEffect(() => {
         const client = new Client()
         client.getLands().then(lands => {
@@ -12,37 +14,28 @@ function LandList() {
         })
     }, [])
 
-    const landDisplays = lands.map(({name, date}) => <LandDisplay name={name} date={date} />)
+    useEffect(() => {
+        const client = new Client()
+        client.search(query).then(results => setLands(results))
+    }, [query])
 
+    const landDisplays = lands.map(({name, date}) => <LandDisplay name={name} date={date} />)
+    console.log('landDisplays is: ', landDisplays)
     return(
         <div className='display-container'>
-            <label>Search for Land or Attraction</label>
-            <div className='search-bar'>
-                <input type='text' />
-                <button>Go!</button>
+            <div className='search-container'>
+                <label>Search for Land or Attraction</label>
+                <div className='search-bar'>
+                    <input
+                        type='text'
+                        onChange={(event) => setQuery(event.target.value)}
+                    />
+                    <button>Go!</button>
+                </div>
             </div>
             {landDisplays && landDisplays}
-            <div className='lands-display'>
-
-            </div>
         </div>
     );
-}
-
-function LandDisplay({name, date}) {
-    return (
-        <div className='land-info'>
-            <h2>{name}</h2>
-            {/*TODO: format date better using https://date-fns.org/*/}
-            Opening Date: {date.toString()}
-            <div className='attraction-list'>
-                <h3>Attractions: COMING SOON</h3>
-                <p>Jungle Cruise</p>
-                <p>The Enchanted Tiki Room</p>
-                <p>Indiana Jones Adventure</p>
-            </div>
-        </div>
-    )
 }
 
 export default LandList;

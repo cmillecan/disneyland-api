@@ -1,0 +1,19 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282727;
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+.about {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: lightskyblue;
+    font-size: 12px;
+}
