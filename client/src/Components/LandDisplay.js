@@ -1,14 +1,22 @@
 import React from 'react'
 import './LandDisplay.css'
+import { format } from 'date-fns'
 
-function LandDisplay({name, date}) {
+function LandDisplay({name, date, attractions}) {
+  const newDate = new Date(date)
+  const formattedDate = format(newDate, 'MMMM d, yyyy')
+
     return (
-        <div className='land-info'>
-            <h1>{name}</h1>
-            {/*TODO: format date better using https://date-fns.org/*/}
-            <p>Opening Date: {date.toString()}</p>
-            <div className='attraction-list'>
-                <h2>Attractions: COMING SOON</h2>
+        <div className='land-ticket'>
+            <div className='land'>
+                <h1>{name}</h1>
+                <p>Opening Date: {formattedDate}</p>
+            </div>
+            <div className='attraction'>
+                <div className='attraction-list'>
+                    <h2>Attractions:</h2>
+                    <p>{attractions}</p>
+                </div>
             </div>
         </div>
     )

@@ -52,6 +52,7 @@ const updateLand = async (req, res) => {
         }
         land.name = body.name
         land.date = body.date
+        land.attractions = body.attractions
         land
             .save()
             .then(() => {

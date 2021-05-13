@@ -1,15 +1,30 @@
-.land-info {
+.land-ticket {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 350px;
-    height: 200px;
-    margin: 4px;
-    background-color: white;
-    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 600px;
+    height: 180px;
+    margin: 20px;
+    background-color: #faf3eb;
 }
 
 .attractions-list {
     display: flex;
     flex-direction: column;
+}
+
+.land {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 2px dashed white;
+}
+
+.attraction {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 200px;
+    justify-content: center;
 }

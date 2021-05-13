@@ -37,8 +37,7 @@ function LandList() {
         client.search(debouncedQuery).then(results => setLands(results))
     }, [debouncedQuery])
 
-    const landDisplays = lands.map(({name, date}) => <LandDisplay name={name} date={date} />)
-
+    const landDisplays = lands.map(({name, date, attractions}) => <LandDisplay name={name} date={date} attractions={attractions} />)
     return(
         <div className='display-container'>
             <div className='search-container'>
@@ -54,7 +53,7 @@ function LandList() {
             </div>
             <div className='lands-display-container'>
                 <div className='lands-info-display'>
-                {landDisplays && landDisplays}
+                    {landDisplays && landDisplays}
             </div>
             </div>
         </div>
