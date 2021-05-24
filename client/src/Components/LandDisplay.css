@@ -8,23 +8,33 @@
     background-color: #faf3eb;
 }
 
+
 .attractions-list {
     display: flex;
     flex-direction: column;
 }
 
 .land {
-    min-width: 300px;
+    min-width: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-right: 2px dashed white;
 }
 
-.attraction {
+.attractions-title {
+    writing-mode: vertical-lr;
+    text-align: center;
+    padding: 10px;
+}
+
+.attractions {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     min-width: 200px;
     justify-content: center;
+    padding: 20px;
+    text-align: left;
+    overflow: auto;
 }
